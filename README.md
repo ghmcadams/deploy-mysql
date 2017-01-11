@@ -1,33 +1,29 @@
-# mysql-deploy
+# deploy-mysql
 ---
 
 This useful little package takes the pain out of updating keeping your database up to date,
 whether in the development environent or production.
 
-## Installation
-```
-$ npm install -g
-```
+[![NPM](https://nodei.co/npm/deploy-mysql.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/deploy-mysql/)
 
-this is not the same as `npm install` in that it does not just install dependencies.  Instead, it installs the current folder as a global module.
+## Installation
+
+    $ npm install deploy-mysql -g
 
 
 ## Usage
 
-```
-$ mysql-deploy user:pass@host:port/database -d <path/to/database/scripts>
+    $ deploy-mysql user:pass@host:port/database -d <path/to/database/scripts>
 
-$ mysql-deploy user:pass@host:port/database -s <path/to/database/schema/scripts> -r <path/to/database/routine/scripts>
+    $ deploy-mysql user:pass@host:port/database -s <path/to/database/schema/scripts> -r <path/to/database/routine/scripts>
 
-$ MYSQL_DEPLOY=user:pass@host:port/database
-$ mysql-deploy MYSQL_DEPLOY -d <path/to/database/scripts>  //where MYSQL_DEPLOY is an environment variable 
+    $ DEPLOY_MYSQL=user:pass@host:port/database
+    $ deploy-mysql DEPLOY_MYSQL -d <path/to/database/scripts>  //where DEPLOY_MYSQL is an environment variable 
 
-```
 
 For more information, type this:
-```
-$ mysql-deploy --help
-```
+
+    $ deploy-mysql --help
 
 
 ## Schema scripts
@@ -58,11 +54,11 @@ END
 
 ## Create database
 
- If the database name in the database options does not exist, mysql-deploy will attempt to create it. If it fails for any reason, lack of permissions or incorrect connection details, it will halt and no futher scripts will run.
+ If the database name in the database options does not exist, deploy-mysql will attempt to create it. If it fails for any reason, lack of permissions or incorrect connection details, it will halt and no futher scripts will run.
 
-## mysql-deploy management tables
+## deploy-mysql management tables
 
-mysql-deploy creates 3 tables the first time you run it in an app. These table will live on the database named in the database option. They are used to track the versions of the schema scripts, functions and stored procedures. It is best to avoid modifying or manually adding any data in these tables.
+deploy-mysql creates 3 tables the first time you run it in an app. These table will live on the database named in the database option. They are used to track the versions of the schema scripts, functions and stored procedures. It is best to avoid modifying or manually adding any data in these tables.
 
 These tables are:
  - DBDeploy_lock
@@ -71,4 +67,28 @@ These tables are:
 
 ## Locking
 
-When running, mysql-deploy locks itself to prevent other instances of mysql-deploy from running at the same time. This lock will be released when the script is no longer running.
+When running, deploy-mysql locks itself to prevent other instances of deploy-mysql from running at the same time. This lock will be released when the script is no longer running.
+
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2017 Gabriel McAdams
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
